@@ -3,7 +3,9 @@ import { Menu, Search } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { SidebarRoutes } from "@/components/SidebarRoutes";
+import { ToggleTheme } from "@/components/ToggleTheme";
+
+import { SidebarRoutes } from "../SidebarRoutes";
 
 export function Navbar() {
   return (
@@ -23,7 +25,7 @@ export function Navbar() {
         <Search strokeWidth={1} className="absolute top-2 right-2" />
       </div>
       <div className="flex gap-x-2 items-center">
-        <p>ToggleTheme</p>
+        <ToggleTheme />
         <UserButton />
       </div>
     </div>
