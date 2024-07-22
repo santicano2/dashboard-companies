@@ -3,7 +3,7 @@ import { Menu, Search } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { SidebarRoutes } from "../SidebarRoutes";
+import { SidebarRoutes } from "@/components/SidebarRoutes";
 
 export function Navbar() {
   return (

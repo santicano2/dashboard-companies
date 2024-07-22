@@ -1,8 +1,8 @@
 "use client";
 
-import { SidebarItem } from "../SidebarItem";
-import { Button } from "../ui/button";
-import { Separator } from "../ui/separator";
+import { SidebarItem } from "@/components/SidebarItem";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import {
   dataGeneralSidebar,
   dataSupportSidebar,
