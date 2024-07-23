@@ -4,6 +4,7 @@ import { CardSummary } from "./components/CardSummary/CardSummary";
 import { LastCustomers } from "./components/LastCustomers";
 import { SalesDistributors } from "./components/SalesDistributors";
 import { TotalSuscribers } from "./components/TotalSuscribers";
+import { ListIntegrations } from "./components/ListIntegrations";
 
 export const dataCardsSummary = [
   {
@@ -52,9 +53,9 @@ export default function Home() {
         <SalesDistributors />
       </div>
 
-      <div className="flex-col xl:flex xl:flex-row gap-y-4 md:gap-y-0 mt-12 md:mb-10 justify-center">
+      <div className="flex-col md:gap-x-10 xl:flex xl:flex-row gap-y-4 md:gap-y-0 mt-12 md:mb-10 justify-center">
         <TotalSuscribers />
-        <p>list integrations</p>
+        <ListIntegrations />
       </div>
     </div>
   );
