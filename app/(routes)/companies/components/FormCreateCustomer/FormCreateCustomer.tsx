@@ -25,6 +25,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { UploadButton } from "@/utils/uploadthing";
+import { toast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   name: z.string(),
@@ -158,14 +160,36 @@ export function FormCreateCustomer(props: FormCreateCustomerProps) {
                 <FormItem>
                   <FormLabel>Profile Image</FormLabel>
                   <FormControl>
-                    <Input placeholder="B-1234567" type="text" {...field} />
+                    {photoUploaded ? (
+                      <p className="text-sm">Image uploaded!</p>
+                    ) : (
+                      <UploadButton
+                        className="bg-slate-600/20 text-slate-800 rounded-lg outline-dotted outline-2"
+                        {...field}
+                        endpoint="profileImage"
+                        onClientUploadComplete={(res) => {
+                          form.setValue("profileImage", res?.[0].url);
+                          toast({
+                            title: "Image uploaded",
+                          });
+                          setPhotoUploaded(true);
+                        }}
+                        onUploadError={(error: Error) => {
+                          toast({
+                            title: "Error uploading image",
+                          });
+                        }}
+                      />
+                    )}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" disabled={!isValid}>
+            Submit
+          </Button>
         </form>
       </Form>
     </div>
