@@ -1,6 +1,6 @@
 # Dashboard companies
 
-Dashboard para empresas, donde podes crear varias companias y administrar sus contactos, eventos y demas
+Dashboard para empresas, donde podes crear varias companias y administrar sus contactos, eventos y demas.
 
 ## Stack
 
