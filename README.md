@@ -4,7 +4,7 @@ Dashboard para empresas, donde podes crear varias companias y administrar sus co
 
 ## Stack
 
-- Next.js
+- Next
 - TypeScript
 - TailwindCSS
 - ShadCn
