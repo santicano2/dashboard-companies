@@ -4,7 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-import multiMonth from "@fullcalendar/multimonth";
+import multiMonthPlugin from "@fullcalendar/multimonth";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -35,6 +35,10 @@ export function Calendar(props: CalendarProps) {
     setSelectedItem(selected);
   };
 
+  const handleEventClick = () => {
+    console.log("event");
+  };
+
   return (
     <div>
       <div className="md:flex gap-x-3">
@@ -51,7 +55,42 @@ export function Calendar(props: CalendarProps) {
             ))}
           </div>
         </div>
+        <div className="flex-1 calendar-container">
+          <FullCalendar
+            plugins={[
+              dayGridPlugin,
+              timeGridPlugin,
+              interactionPlugin,
+              listPlugin,
+              multiMonthPlugin,
+            ]}
+            headerToolbar={{
+              left: "prev,next today",
+              center: "title",
+              right:
+                "timeGridDay,timeGridWeek,dayGridMonth,multiMonthYear,listMonth",
+            }}
+            height="80vh"
+            initialView="dayGridMonth"
+            weekends={false}
+            events={events}
+            eventContent={renderEventContent}
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            select={handleDateClick}
+            eventClick={handleEventClick}
+          />
+        </div>
       </div>
+    </div>
+  );
+}
+
+function renderEventContent(eventInfo: EventContentArg) {
+  return (
+    <div className="bg-slate-200 dark:bg-background w-full p-1">
+      <i>{eventInfo.event.title}</i>
     </div>
   );
 }
