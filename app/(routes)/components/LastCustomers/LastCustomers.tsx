@@ -1,6 +1,6 @@
 import { Building } from "lucide-react";
 
-import { CustomIcon } from "@/components/CustomIcon";
+import { CustomIcon } from "@/components/CustomIcon/CustomIcon";
 import { CustomersTable } from "../CustomersTable";
 
 export function LastCustomers() {

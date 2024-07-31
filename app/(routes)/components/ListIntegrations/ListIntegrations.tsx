@@ -1,6 +1,6 @@
 import { List } from "lucide-react";
 
-import { CustomIcon } from "@/components/CustomIcon";
+import { CustomIcon } from "@/components/CustomIcon/CustomIcon";
 import { TableIntegrations } from "../TableIntegrations";
 
 export function ListIntegrations() {
