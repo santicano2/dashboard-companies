@@ -1,5 +1,5 @@
 import { List } from "lucide-react";
-import { CustomIcon } from "@/components/CustomIcon";
+import { CustomIcon } from "@/components/Customicon";
 import { TableIntegrations } from "../TableIntegrations";
 
 export function ListIntegrations() {

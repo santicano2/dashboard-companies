@@ -3,7 +3,7 @@
 import { Percent } from "lucide-react";
 import { ResponsiveContainer, PieChart, Pie, Tooltip, Legend } from "recharts";
 
-import { CustomIcon } from "@/components/CustomIcon";
+import { CustomIcon } from "@/components/Customicon";
 import { dataTotalSuscribers } from "./TotalSuscribers.data";
 
 export function TotalSuscribers() {
