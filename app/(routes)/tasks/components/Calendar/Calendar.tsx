@@ -15,6 +15,8 @@ import { DateSelectArg, EventContentArg } from "@fullcalendar/core/index.js";
 import { formatDate } from "@/lib/formatDate";
 
 import { CalendarProps } from "./Calendar.types";
+import { ModalAddEvent } from "../ModalAddEvent";
+import { toast } from "@/components/ui/use-toast";
 
 export function Calendar(props: CalendarProps) {
   const { companies, events } = props;
@@ -35,8 +37,66 @@ export function Calendar(props: CalendarProps) {
     setSelectedItem(selected);
   };
 
-  const handleEventClick = () => {
-    console.log("event");
+  useEffect(() => {
+    if (onSaveNewEvent && selectedItem?.view.calendar) {
+      const calendarApi = selectedItem.view.calendar;
+      calendarApi.unselect();
+
+      const newEventPrisma = {
+        companyId: newEvent.companySelected.id,
+        title: newEvent.eventName,
+        start: new Date(selectedItem.start),
+        allDay: false,
+        timeFormat: "H(:mm)",
+      };
+
+      axios
+        .post(
+          `/api/company/${newEvent.companySelected.id}/event`,
+          newEventPrisma
+        )
+        .then(() => {
+          toast({
+            title: "Event created",
+          });
+          router.refresh();
+        })
+        .catch((error) => {
+          toast({
+            title: "Error creating event",
+            variant: "destructive",
+          });
+        });
+
+      setNewEvent({
+        eventName: "",
+        companySelected: {
+          name: "",
+          id: "",
+        },
+      });
+      setOnSaveNewEvent(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onSaveNewEvent, selectedItem, event]);
+
+  const handleEventClick = async (selected: any) => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete this event ${selected.event.title}`
+      )
+    ) {
+      try {
+        await axios.delete(`/api/event/${selected.event._def.publicId}`);
+        toast({ title: "Event deleted" });
+        router.refresh();
+      } catch (error) {
+        toast({
+          title: "Something went wrong",
+          variant: "destructive",
+        });
+      }
+    }
   };
 
   return (
@@ -44,6 +104,7 @@ export function Calendar(props: CalendarProps) {
       <div className="md:flex gap-x-3">
         <div className="w-[200px] relative">
           <div className="overflow-auto absolute left-0 top-0 h-full w-full">
+            <p className="mb-3 text-xl">List of tasks</p>
             {events.map((currentEvent) => (
               <div
                 key={currentEvent.id}
@@ -83,6 +144,13 @@ export function Calendar(props: CalendarProps) {
           />
         </div>
       </div>
+      <ModalAddEvent
+        open={open}
+        setOpen={setOpen}
+        setOnSaveNewEvent={setOnSaveNewEvent}
+        companies={companies}
+        setNewEvent={setNewEvent}
+      />
     </div>
   );
 }
