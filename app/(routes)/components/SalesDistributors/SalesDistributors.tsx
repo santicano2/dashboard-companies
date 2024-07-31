@@ -1,4 +1,4 @@
-import { CustomIcon } from "@/components/CustomIcon/CustomIcon";
+import { CustomIcon } from "@/components/CustomIcon";
 import { BarChart } from "lucide-react";
 import { GraphicSuscribers } from "../GraphicSuscribers";
 

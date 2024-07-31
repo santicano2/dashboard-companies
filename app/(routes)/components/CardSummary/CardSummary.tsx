@@ -1,4 +1,4 @@
-import { CustomIcon } from "@/components/CustomIcon/CustomIcon";
+import { CustomIcon } from "@/components/CustomIcon";
 import { CardSummaryProps } from "./CardSummary.types";
 import { CustomTooltip } from "@/components/CustomTooltip";
 import { cn } from "@/lib/utils";
